@@ -1,0 +1,39 @@
+// import { NextRequest } from 'next/server';
+// import { listTrips, createTrip } from '@/data/trips';
+// import { TripCreateSchema } from '@/lib/validation';
+// import type { Trip } from '@/types/trip';
+// import { ZodError } from 'zod';
+
+// export const runtime = 'nodejs';
+
+// export async function GET() {
+//   const trips = await listTrips();
+//   return Response.json({ trips });
+// }
+
+// export async function POST(req: NextRequest) {
+//   try {
+//     const body = await req.json();
+//     const parsed = TripCreateSchema.parse(body);
+
+//     // map ชื่อฟิลด์ให้ตรงกับ Trip ฝั่ง client
+//     const trip: Trip = {
+//       id: parsed.id,
+//       name: parsed.name,
+//       province: parsed.province,
+//       startDate: parsed.startedAt,
+//       endDate: parsed.endedAt ?? undefined,
+//       vehicle: parsed.vehicle as any,
+//       entries: [],
+//     };
+
+//     const created = await createTrip(trip);
+//     return Response.json({ trip: created }, { status: 201 });
+//   } catch (e: any) {
+//     if (e instanceof ZodError) {
+//       return new Response(JSON.stringify({ error: e.issues }), { status: 400 });
+//     }
+//     console.error('POST /api/trips error:', e?.message || e);
+//     return new Response(JSON.stringify({ error: e?.message || 'Unknown error' }), { status: 500 });
+//   }
+// }
